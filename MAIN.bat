@@ -61,7 +61,12 @@ PAUSE
 
 ECHO. 
 ECHO A10 - (SET, PATH) The command SET to modify the value of the PATH variable by adding the desired subfolder, to then show the updated path on the screen.
-::setx path "%path%;c:\My Batch Script Assignment\Processing\"
-set path=%path%;C:\Users\ROSAF2\Desktop\Folder
+::SETX PATH=%PATH%;C:\My Batch Script Assignment\Processing
+SET PATH=%PATH%;C:\My Batch Script Assignment\Processing
 PATH
+PAUSE
+
+ECHO. 
+ECHO Test Program of a new Directory path
+Output
 PAUSE
