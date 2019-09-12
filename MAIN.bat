@@ -197,17 +197,17 @@ NET LOCALGROUP "Awesome Users" /DELETE
 PAUSE>NUL
 ECHO.  
 ECHO A20
-ECHO ECHO ^>,^>^>, USERNAME, CHKDSK ^>, PATH, SCHTASKS /CREATE /TN /TR /SC /D /ST /ST /RLECHOto be able to write one initial instruction into a bat file with ^>, to then append the rest of them using ^>^>, USERNAME to implement the same path depending on the current user, CHKDSK ^> to check the disk for errors and put them into a log file, set the PATH to be able to run the bat and finally SCHTASKS to schedule the bat file with the next switches: /CREATE to create the task /TN to name the task /TR to specify the application /SC to set the frequency /D to set the day, /ST to set the time, and /RL to grant the highest level of previlege.
+ECHO ECHO ^>,^>^>, USERNAME, CHKDSK ^>, SCHTASKS /CREATE /TN /TR /SC /D /ST /ST /RL
+ECHO To be able to write one initial instruction into a bat file with ^>, to then append the rest of them using ^>^>, USERNAME to implement the same path depending on the current user, CHKDSK ^> to check the disk for errors and put them into a log file, and finally SCHTASKS to schedule the bat file with the next switches: /CREATE to create the task /TN to name the task /TR to specify the application /SC to set the frequency /D to set the day, /ST to set the time, and /RL to grant the highest level of previlege.
 PAUSE>NUL
 ECHO. 
-::Creating a support bat file on the Desktop
-ECHO @ECHO OFF > C:\Users\%USERNAME%\Desktop\CHECKER.bat
-ECHO TITLE CHECKER >> C:\Users\%USERNAME%\Desktop\CHECKER.bat
-ECHO ECHO Checking the disk for errors >> C:\Users\%USERNAME%\Desktop\CHECKER.bat
-ECHO ECHO. >> C:\Users\%USERNAME%\Desktop\CHECKER.bat
-ECHO ECHO Please wait... >> C:\Users\%USERNAME%\Desktop\CHECKER.bat
-ECHO CHKDSK ^> C:\Users\%USERNAME%\Desktop\chkdskResults.txt >> C:\Users\%USERNAME%\Desktop\CHECKER.bat
-SET PATH=%PATH%;C:\Users\%USERNAME%\Desktop
+::Creating a support bat file in System32
+ECHO @ECHO OFF > C:\Windows\System32\CHECKER.bat
+ECHO TITLE CHECKER >> C:\Windows\System32\CHECKER.bat
+ECHO ECHO Checking the disk for errors >> C:\Windows\System32\CHECKER.bat
+ECHO ECHO. >> C:\Windows\System32\CHECKER.bat
+ECHO ECHO Please wait... >> C:\Windows\System32\CHECKER.bat
+ECHO CHKDSK ^> C:\Users\%USERNAME%\Desktop\chkdskResults.txt >> C:\Windows\System32\CHECKER.bat
 ::Scheduling the bat file
 SCHTASKS /CREATE /TN Weekly_Check /TR CHECKER /SC WEEKLY /D SUN /ST 22:00:00 /RL HIGHEST
 PAUSE>NUL
